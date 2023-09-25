@@ -26,6 +26,7 @@ def wait_for_receipt(w3, tx_hash):
 def main():
     connected, w3 = connect_to_eth()
     while not connected:
+        print("Connecting to Ethereum Test Provider...")
         sleep(5)
         connected, w3 = connect_to_eth()
     
@@ -69,7 +70,7 @@ def main():
     amount_in = tether_balance
 
     path = [t_addr, w3.toChecksumAddress(my_address)]      
-    deadline = w3.eth.getBlock('latest')['timestamp'] + 120      
+    deadline = w3.eth.getBlock('latest')['timestamp'] + 120
     swap_txn = uniswap_contract.functions.swapExactTokensForETH(
         amount_in,
         # 0,
